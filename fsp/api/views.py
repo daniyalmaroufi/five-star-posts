@@ -6,7 +6,6 @@ from .models import Post, Score
 from .serializers import ScoreSerializer
 
 
-
 class ScoreView(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -36,3 +35,22 @@ class ScoreView(APIView):
         
     def get(self,request):
         return Response({'ok':True},status=status.HTTP_200_OK)
+
+
+class PostsView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self,request):
+        posts=[]
+        for post in Post.objects.all():
+            a_post={'title':post.title,'scores_count':post.scores_count}
+            the_score=Score.objects.filter(user=request.user,post=post)
+            if the_score.exists():
+                a_post['score']=the_score.first().score
+            else:
+                a_post['score']=post.score
+            posts.append(a_post)
+
+
+        return Response({'ok':True,'posts':posts},status=status.HTTP_200_OK)
+
