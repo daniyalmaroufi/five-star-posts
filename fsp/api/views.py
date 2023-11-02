@@ -7,6 +7,20 @@ from .serializers import ScoreSerializer
 
 
 class ScoreView(APIView):
+    """
+    A logged in user rates a post by calling this method.
+    If the user has never rated the post before, a new rating
+    would be submitted and otherwise their previous rating would get updated.
+
+    Sample Response:
+
+    ```json
+    {
+        "ok": true,
+        "detail": "set"
+    }
+    ```
+    """
     permission_classes = (IsAuthenticated,)
 
     def post(self,request):
@@ -35,6 +49,37 @@ class ScoreView(APIView):
 
 
 class PostsView(APIView):
+    """
+    Shows the list of posts ordered by id descending with the title of each post,
+    the number of users rated that post and its rating. If the logged in user has
+    rated a post before, their rating would be shown.
+    
+    Sample Response:
+    
+    ```json
+    {
+        "ok": true,
+        "posts": [
+            {
+                "title": "Post Three",
+                "scores_count": 0,
+                "score": 0.0
+            },
+            {
+                "title": "Second Post",
+                "scores_count": 1,
+                "score": 4.0
+            },
+            {
+                "title": "Post 1",
+                "scores_count": 2,
+                "score": 4
+            }
+        ]
+    }
+    ```
+
+    """
     permission_classes = (IsAuthenticated,)
     
     def get(self,request):

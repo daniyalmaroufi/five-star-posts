@@ -1,5 +1,5 @@
-# five-star-posts
-A simple Django Rest Framework application
+# Five Star Posts
+A simple Django Rest Framework application to rate blog posts.
 
 ## API
 
@@ -87,7 +87,8 @@ Vary: Accept
 
 {
     "ok": false
-}```
+}
+```
 
 ## Create venv
 
