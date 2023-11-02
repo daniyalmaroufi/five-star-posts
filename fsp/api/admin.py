@@ -3,7 +3,7 @@ from . import models
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
-  list_display = ("title","text","score")
+  list_display = ("title","text","score","scores_count")
 
 class ScoreAdmin(admin.ModelAdmin):
   list_display = ("user","post","score")

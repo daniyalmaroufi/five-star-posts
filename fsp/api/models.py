@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
-    score = models.IntegerField(default=0)
+    score = models.FloatField(default=0)
     scores_count=models.BigIntegerField(default=0)
 
 

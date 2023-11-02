@@ -23,11 +23,11 @@ class ScoreView(APIView):
                 the_score.score=score
                 the_score.save()
             else:
-                the_score=Score(user=request.user,post=Post.objects.get(id=the_post),score=score)
+                the_score=Score(user=request.user,post=the_post,score=score)
                 the_score.save()
+                the_post.scores_count+=1
 
-            the_post.score=(the_post.score*the_post.scores_count+score)/(the_post.scores_count+1)
-            the_post.scores_count+=1
+            the_post.score=(the_post.score*(the_post.scores_count-1)+score)/(the_post.scores_count)
             the_post.save()
             
             return Response({'ok':True,'detail':'set'},status=status.HTTP_200_OK)
