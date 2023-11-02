@@ -10,7 +10,6 @@ def post_validator(value):
     if not Post.objects.filter(id=value).exists():
         raise serializers.ValidationError('No such post exists.')
 
-
 class ScoreSerializer(serializers.Serializer):
     score = serializers.IntegerField(validators=[score_validator])
     post = serializers.IntegerField(validators=[post_validator])

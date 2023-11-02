@@ -32,9 +32,6 @@ class ScoreView(APIView):
             return Response({'ok':True,'detail':'set'},status=status.HTTP_200_OK)
         else:
             return Response({'ok':False},status=status.HTTP_403_FORBIDDEN)
-        
-    def get(self,request):
-        return Response({'ok':True},status=status.HTTP_200_OK)
 
 
 class PostsView(APIView):
@@ -42,7 +39,7 @@ class PostsView(APIView):
     
     def get(self,request):
         posts=[]
-        for post in Post.objects.all():
+        for post in Post.objects.all().order_by('-id'):
             a_post={'title':post.title,'scores_count':post.scores_count}
             the_score=Score.objects.filter(user=request.user,post=post)
             if the_score.exists():
