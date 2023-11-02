@@ -7,6 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     score = models.IntegerField(default=0)
+    scores_count=models.BigIntegerField(default=0)
 
 
 class Score(models.Model):
