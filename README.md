@@ -1,6 +1,14 @@
 # five-star-posts
 A simple Django Rest Framework application
 
+## Create venv
+
+Clone the repository and create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
 ## Activate venv
 
 Activate the virtual environment by running:
