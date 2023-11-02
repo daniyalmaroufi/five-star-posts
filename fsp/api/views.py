@@ -51,6 +51,8 @@ class PostsView(APIView):
                 a_post['score']=post.score
             posts.append(a_post)
 
-
-        return Response({'ok':True,'posts':posts},status=status.HTTP_200_OK)
+        if len(posts):
+            return Response({'ok':True,'posts':posts},status=status.HTTP_200_OK)
+        
+        return Response({'ok':False,'detail':'No posts exist'},status=status.HTTP_404_NOT_FOUND)
 
